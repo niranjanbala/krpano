@@ -58,7 +58,7 @@ function initialize()
         for(var i=0;i<krpanoimage.length;i++)
         {
             var loc = new google.maps.LatLng(krpanoimage[i].lat, krpanoimage[i].lng);
-            var mar = new google.maps.Marker({position: loc,title: krpanoimage[i].IMAGE});
+            var mar = new google.maps.Marker({position: loc,title: krpanoimage[i].IMAGE,icon:'marker.png'});
             markers.push(mar);
             console.log(mar);
             files.push("domlur2/"+String(krpanoimage[i].HTML));
@@ -87,7 +87,7 @@ function initialize()
     function toggleBounce(markers,index) {
         for(var i=0;i<markers.length;i++) {
             markers[i].setAnimation(null);
-            markers[i].icon=null;
+            markers[i].setIcon('marker.png')
         }
         var marker=markers[index];
         marker.setAnimation(google.maps.Animation.BOUNCE);

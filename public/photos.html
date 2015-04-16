@@ -44,7 +44,7 @@ function initialize()
         for(var i=0;i<imagesprop.length;i++)
         {
             var loc = new google.maps.LatLng(imagesprop[i].lat, imagesprop[i].lng);
-            var mar = new google.maps.Marker({position: loc,title: imagesprop[i].IMAGE});
+            var mar = new google.maps.Marker({position: loc,title: imagesprop[i].IMAGE,icon:'marker.png'});
             markers.push(mar);
             files.push("http://res.cloudinary.com/hgcbzn9jp/image/upload/c_scale,w_1024/locality-images/"+String(imagesprop[i].IMAGE));
             //files.push("https://s3-ap-southeast-1.amazonaws.com/locality-images/"+String(imagesprop[i].IMAGE));
@@ -71,7 +71,7 @@ function initialize()
     function toggleBounce(markers,index) {
         for(var i=0;i<markers.length;i++) {
             markers[i].setAnimation(null);
-            markers[i].icon=null
+            markers[i].setIcon('marker.png');
         }
         var marker=markers[index];
         marker.setAnimation(google.maps.Animation.BOUNCE);
