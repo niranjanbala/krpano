@@ -46,7 +46,7 @@ function initialize()
             var loc = new google.maps.LatLng(imagesprop[i].lat, imagesprop[i].lng);
             var mar = new google.maps.Marker({position: loc,title: imagesprop[i].IMAGE,icon:'marker.png'});
             markers.push(mar);
-            files.push("http://res.cloudinary.com/hgcbzn9jp/image/upload/c_scale,w_1024/locality-images/"+String(imagesprop[i].IMAGE));
+            files.push("http://res.cloudinary.com/hgcbzn9jp/image/upload/c_scale,w_2048/locality-images/"+String(imagesprop[i].IMAGE));
             //files.push("https://s3-ap-southeast-1.amazonaws.com/locality-images/"+String(imagesprop[i].IMAGE));
             mar.setMap(map);
         }
