@@ -57,16 +57,21 @@ function initialize()
             })
             showImage(i, files,markers)
         }
+        changeImage(files[0]);
+        markers[0].setIcon("streetview-icon.png");
     }
     function showImage(index, files,markers) {
         google.maps.event.addListener(markers[index],'click',function(){ 
             toggleBounce(markers,index);
-            $('#map-img img').attr("src",files[index]);
+            changeImage(files[index]);
+        });
+    }
+    function changeImage(imageFile) {
+            $('#map-img img').attr("src",imageFile);
             $('#map-img img').attr("height","580px");
             $('#map-img img').attr("width","100%");
             $('#map-img img').attr("display","table");
             $('#map-img img').show();
-        });
     }
     function toggleBounce(markers,index) {
         for(var i=0;i<markers.length;i++) {
