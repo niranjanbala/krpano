@@ -52,6 +52,9 @@ function initialize()
         }
         for(var i=0;i<imagesprop.length;i++)
         {
+            $.get(files[i], function(data){
+                console.log('loaded');
+            })
             showImage(i, files,markers)
         }
     }
