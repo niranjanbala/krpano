@@ -47,9 +47,6 @@ if (cluster.isMaster) {
   return compression.filter(req, res)
 }
     // Add a basic route – index page
-    app.get('/', function (req, res) {
-        res.send(index);
-    });
     app.set('port', process.env.PORT || 3000);
     app.listen(app.get('port'));
     console.log('Worker ' + cluster.worker.id + ' running!');
