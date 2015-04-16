@@ -52,13 +52,18 @@ function initialize()
         }
         for(var i=0;i<imagesprop.length;i++)
         {
-            $.get(files[i], function(data){
-                console.log('loaded');
-            })
             showImage(i, files,markers)
+            preloadImage(files, i);
         }
         changeImage(files[0]);
         markers[0].setIcon("streetview-icon.png");
+    }
+    function preloadImage(files, index) {
+        setTimeout(function(){
+            $.get(files[index], function(data){
+                //console.log('loaded', index);
+            })
+        },index*2000);
     }
     function showImage(index, files,markers) {
         google.maps.event.addListener(markers[index],'click',function(){ 
