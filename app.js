@@ -35,7 +35,7 @@ if (cluster.isMaster) {
     var compression = require('compression')
     // Create a new Express application
     var app = express();
-    app.get('/data', function(req, res){
+    app.get('/data.json', function(req, res){
         var imageData=require('./model/LocalityImageDataSchema');
         imageData.find({},function(err, imageDataList){
             res.jsonp(imageDataList);
