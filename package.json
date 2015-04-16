@@ -6,7 +6,7 @@
     "express": "*",
     "mongodb": "*",
     "mongoose": "",
-    "request": "^2.54.0",
+    "request": "^2.54.0"
   },
   "main": "app.js",
   "scripts": {
