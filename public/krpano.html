@@ -69,6 +69,7 @@ function initialize()
             showImage(i,files,markers)
         }
         changeIframe(files[0]);
+        markers[0].setIcon("streetview-icon.png");
     }
     function showImage(index,files,markers) {
         google.maps.event.addListener(markers[index],'click',function(){ 
@@ -86,14 +87,14 @@ function initialize()
     function toggleBounce(markers,index) {
         for(var i=0;i<markers.length;i++) {
             markers[i].setAnimation(null);
-            markers[i].icon="images/1429114784_Map-Marker-Marker-Outside-Pink.png";
+            markers[i].icon=null;
         }
         var marker=markers[index];
         marker.setAnimation(google.maps.Animation.BOUNCE);
-        marker.icon="images/1429114519_Map-Marker-Marker-Outside-Azure.png"
-            setTimeout(function(){
-                marker.setAnimation(null)
-            },3000)
+        marker.setIcon("streetview-icon.png");
+        setTimeout(function(){
+            marker.setAnimation(null)
+        },3000)
     }
 </script>
 <style type="text/css">
