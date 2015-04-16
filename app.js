@@ -26,6 +26,7 @@ if (cluster.isMaster) {
     mongoose.connect(process.env.MONGOLAB_URI);
     //attach lister to connected event
     mongoose.connection.once('connected', function() {
+        console.log('connected');
     });
 
     // Include Express
@@ -34,6 +35,12 @@ if (cluster.isMaster) {
     var compression = require('compression')
     // Create a new Express application
     var app = express();
+    app.get('/data', function(req, res){
+        var imageData=require('./model/LocalityImageDataSchema');
+        imageData.find({},function(err, imageDataList){
+            res.jsonp(imageDataList);
+        });
+    })
     app.use(express.static(path.join(__dirname, 'public')));
     app.use(compression({filter: shouldCompress}))
 

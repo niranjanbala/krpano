@@ -1,0 +1,19 @@
+<krpano version="1.17.4">
+	
+	<!-- the skin -->
+	<include url="skin/defaultskin.xml" />
+	
+		<autorotate enabled="true" waittime="0.0" speed="10.0" />
+	<view hlookat="0" vlookat="0" fovtype="MFOV" fov="1" maxpixelzoom="1.0" fovmin="70" fovmax="140" limitview ="range"  hlookatmin="-180" hlookatmax="180" vlookatmin="-90" vlookatmax="40" />
+	
+
+	<preview url="2015-04-16_16_07_31.tiles/preview.jpg" />
+
+	<image>
+		<cube url="2015-04-16_16_07_31.tiles/pano_%s.jpg" />
+		<mobile>
+			<cube url="2015-04-16_16_07_31.tiles/mobile_%s.jpg" />
+		</mobile>
+	</image>
+
+</krpano>
