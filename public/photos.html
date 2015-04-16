@@ -1,0 +1,138 @@
+
+<!doctype html> 
+<html> 
+<head> 
+<title>Jayanagar Photos</title> 
+<meta charset="iso-8859-1">
+<meta charset="utf-8">
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?libraries=geometry,visualization&sensor=false"></script>
+<!--<script src="data/sales_ap.js"></script> -->
+<script src="imageprops.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Core JavaScript -->
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+ <script type="text/javascript">
+
+function initialize()
+    {
+        var myCenter=new google.maps.LatLng(12.928782, 77.587110);
+        var mapProp = {
+            center:myCenter,
+            panControl:false,
+            zoom:14,
+            mapTypeId:google.maps.MapTypeId.ROADMAP
+        };
+        var map=new google.maps.Map(document.getElementById("map"),mapProp);
+
+        var decodedPath= google.maps.geometry.encoding.decodePath("kw~mAgwqxMKn@If@Qz@EZ_@r@OPU^Wd@]l@}@dBa@jBQbAkOlGhAhHxAdB^^|Bd@`Dp@JrOThGVbFzh@AGpXWbYr[~AfAcG{Es@N{CvjAf@hAoFxEpAvJlCBiTl@aEv@}CF{RhAyoBsYm@q\\e@ac@s@yBMaDjVb@\\aAl@mC`P}E{@YvHsb@^qByB_@c@i@g@k@e@SlAOr@Sr@UdA");
+        var jayanagar = new google.maps.Polygon({
+            paths: decodedPath,
+            strokeColor: "#424242",
+            strokeOpacity: 0.7,
+            strokeWeight:3.0,
+            fillColor: "#F6D8CE",
+            fillOpacity: 0.2
+        });
+        jayanagar.setMap(map);
+        showPhotos(map, imagesprop);
+    }
+    function showPhotos(map, imagesprop) {
+        var markers = [];
+        var files = [];
+        for(var i=0;i<imagesprop.length;i++)
+        {
+            var loc = new google.maps.LatLng(imagesprop[i].lat, imagesprop[i].lng);
+            var mar = new google.maps.Marker({position: loc,title: imagesprop[i].IMAGE});
+            markers.push(mar);
+            files.push("http://res.cloudinary.com/hgcbzn9jp/image/upload/c_scale,w_1024/locality-images/"+String(imagesprop[i].IMAGE));
+            //files.push("https://s3-ap-southeast-1.amazonaws.com/locality-images/"+String(imagesprop[i].IMAGE));
+            mar.setMap(map);
+        }
+        for(var i=0;i<imagesprop.length;i++)
+        {
+            showImage(i, files,markers)
+        }
+    }
+    function showImage(index, files,markers) {
+        google.maps.event.addListener(markers[index],'click',function(){ 
+            toggleBounce(markers,index);
+            $('#map-img img').attr("src",files[index]);
+            $('#map-img img').attr("height","580px");
+            $('#map-img img').attr("width","100%");
+            $('#map-img img').attr("display","table");
+            $('#map-img img').show();
+        });
+    }
+    function toggleBounce(markers,index) {
+        for(var i=0;i<markers.length;i++) {
+            markers[i].setAnimation(null);
+            markers[i].icon=null
+        }
+        var marker=markers[index];
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+        marker.setIcon("streetview-icon.png");
+        setTimeout(function(){
+            marker.setAnimation(null)
+        },3000)
+    }
+</script>
+<style type="text/css">
+body{
+    background: #424242;
+}
+    .header{
+        height:30px;
+        width: 100%;
+    }
+
+   .header div{
+         
+    }
+    #map-wrapper{
+            background: white;
+         padding:10px 10px !important; 
+         box-shadow: inset 0 2px 0 rgba(255,255,255,.3), 0 2px 4px rgba(0,0,0,.4) !important;
+    }
+    #map{
+        height:580px;
+       
+       
+      
+    }
+    #map-img{
+       
+        padding-right: 10px;
+       
+      
+    }
+     #map-img div{
+         background: white;
+         padding:10px 10px 10px 10px;
+         box-shadow: inset 0 2px 0 rgba(255,255,255,.3), 0 2px 4px rgba(0,0,0,.4);
+     }
+</style>
+</head> 
+<body onload="initialize()"> 
+<div class="row" style="margin:0px 10px 30px 10px;">
+        <div class=" header">
+            <div > 
+                <!-- <img src="images/logo.png" /> -->
+            </div>
+        </div>
+        <div class="">
+            <div class="col-md-4" id="map-wrapper" > 
+                <div id="map"></div>
+            </div>
+
+            <div class="col-md-8" id="map-img" >
+                <div>
+                   <img style="height:580px;width:100%;display:table;">
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
