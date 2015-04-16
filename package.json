@@ -1,0 +1,17 @@
+{
+  "name": "cfx-krpano",
+  "version": "0.0.1",
+  "dependencies": {
+    "compression": "~1.4.3",
+    "express": "*",
+    "mapnik": "*",
+    "mongodb": "*",
+    "mongoose": "",
+    "request": "^2.54.0",
+    "step": "0.0.5"
+  },
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  }
+}
